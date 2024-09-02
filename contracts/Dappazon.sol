@@ -37,7 +37,7 @@ contract Dappazon {
         owner = msg.sender;
     }
 
-    // list products
+    // list our products
     function list(
         uint256 _id,
         string memory _name,
