@@ -17,6 +17,14 @@ function App() {
 
   const [provider, setProvider] = useState(null)
 
+  const [electronics, setElectronics] = useState(null)
+  const [clothing, setClothing] = useState(null)
+  const [toys, setToys] = useState(null)
+
+  const togglePop = () => {
+    console.log("toggle pop...")
+  }
+
   const loadBlockchainData = async () => {
     // connect to Blockchaiun
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -46,6 +54,9 @@ function App() {
     const clothing = items.filter((item) => item.category === 'clothing')
     const toys = items.filter((item) => item.category === 'toys')
    
+    setElectronics(electronics)
+    setClothing(clothing)
+    setToys(toys)
   }
 
   useEffect(() => {
@@ -58,6 +69,13 @@ function App() {
 
       <h2>Dappazon Best Sellers</h2>
 
+      {electronics && clothing && toys && (
+      <>
+        <Section title={"Clothing & Jewelry"} items={clothing} togglePop={togglePop} />
+        <Section title={"Electronics & Gadgets"} items={electronics} togglePop={togglePop} />
+        <Section title={"Toys & Gaming"} items={toys} togglePop={togglePop} />
+      </>
+      )}
     </div>
   );
 }
